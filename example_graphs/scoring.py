@@ -80,7 +80,8 @@ def main():
   all_results = defaultdict(list)
   
   if args.all:
-    training_percents = numpy.asarray(range(1, 10)) * .1
+#   training_percents = numpy.asarray(range(1, 10)) * .1
+    training_percents = numpy.asarray(range(1, 10)) * .01
   else:
     training_percents = [0.1, 0.5, 0.9]
   for train_percent in training_percents:
@@ -111,7 +112,8 @@ def main():
       for i, j in zip(cy.row, cy.col):
           y_test[i].append(j)
   
-      clf = TopKRanker(LogisticRegression())
+      n_jobs = len(numpy.unique(y))
+      clf = TopKRanker(LogisticRegression(), n_jobs)
       clf.fit(X_train, y_train_)
   
       # find out how many labels should be predicted

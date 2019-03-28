@@ -44,3 +44,7 @@ docs/_build
 
 # IDEA
 .idea
+
+example_graphs/*.embeddings
+example_graphs/*.embeddings.walks.*
+example_graphs/*.results

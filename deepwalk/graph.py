@@ -137,7 +137,31 @@ class Graph(defaultdict):
       cur = path[-1]
       if len(G[cur]) > 0:
         if rand.random() >= alpha:
-          path.append(rand.choice(G[cur]))
+          ###############
+          # RANDOM WALK #
+          ###############
+          # path.append(rand.choice(G[cur]))
+          ###############
+          # RANDOM WALK #
+          ###############
+
+          ################################
+          # NON-BACKTRACKING RANDOM WALK #
+          ################################
+          neighbors = G[cur]
+          if len(path) > 1:
+            previous = path[-2]
+            try:
+              neighbors.remove(previous)
+            except ValueError:
+              pass
+          if neighbors:
+            path.append(rand.choice(neighbors))
+          else:
+            path.append(path[0])
+          ################################
+          # NON-BACKTRACKING RANDOM WALK #
+          ################################
         else:
           path.append(path[0])
       else:
